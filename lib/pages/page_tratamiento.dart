@@ -87,6 +87,46 @@ class _PaginaTratamientoState extends State<PaginaTratamiento> {
   bool _habilitado = false;
   String? _opcionSeleccionada;
 
+  final _dateControllerInicio = TextEditingController();
+  final _dateControllerFin = TextEditingController();
+  final _timeController = TextEditingController();
+
+  Future<void> _selectDateInicio(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2015, 8),
+      lastDate: DateTime(2101),
+    );
+   if (picked != null)
+      _dateControllerInicio.text = DateFormat('yyyy/MM/dd').format(picked);
+      
+  }
+  Future<void> _selectDateFin(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2015, 8),
+      lastDate: DateTime(2101),
+    );
+    if (picked != null)
+      _dateControllerFin.text = DateFormat('yyyy/MM/dd').format(picked);
+      
+  }
+
+  Future<void> _selectTime(BuildContext context) async {
+  final TimeOfDay? picked = await showTimePicker(
+    context: context,
+    initialTime: TimeOfDay.now(),
+  );
+  if (picked != null) {
+    final now = DateTime.now();
+    final dt = DateTime(now.year, now.month, now.day, picked.hour, picked.minute);
+    final format = DateFormat('HH:mm');  // 24 hour format
+    _timeController.text = format.format(dt);
+  }
+}
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -322,6 +362,7 @@ class _PaginaTratamientoState extends State<PaginaTratamiento> {
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: TextFormField(
+                      controller: _dateControllerInicio,
                       decoration: const InputDecoration(
                         labelText: 'Fecha de inicio',
                         hintText:
@@ -329,6 +370,10 @@ class _PaginaTratamientoState extends State<PaginaTratamiento> {
                         icon: Icon(Icons.calendar_today_rounded,
                             color: Color.fromARGB(255, 163, 22, 156)),
                       ),
+                        onTap: () {
+                            _selectDateInicio(context);
+                          },
+
                       keyboardType: TextInputType.datetime,
                       //Validación del campo
                       validator: (value) {
@@ -360,12 +405,17 @@ class _PaginaTratamientoState extends State<PaginaTratamiento> {
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: TextFormField(
+                      controller: _dateControllerFin,
                       decoration: const InputDecoration(
+                        
                         labelText: 'Fecha de fin',
                         hintText: 'Introduce la fecha de fin del medicamento',
                         icon: Icon(Icons.calendar_month_rounded,
                             color: Color.fromARGB(255, 57, 101, 196)),
                       ),
+                      onTap: () {
+                            _selectDateFin(context);
+                          },
                       keyboardType: TextInputType.datetime,
                       //Validación del campo
                       validator: (value) {
@@ -391,6 +441,7 @@ class _PaginaTratamientoState extends State<PaginaTratamiento> {
                   Container(
                     padding: EdgeInsets.symmetric(horizontal: 20),
                     child: TextFormField(
+                      controller: _timeController,
                       decoration: const InputDecoration(
                         labelText: 'Hora inicio toma',
                         hintText: 'Itroduce la hora del comienzo de la toma',
@@ -398,6 +449,9 @@ class _PaginaTratamientoState extends State<PaginaTratamiento> {
                               color: Color.fromARGB(255, 9, 168, 44),
                         ),
                       ),
+                        onTap: () {
+                              _selectTime(context);
+                            },
                       keyboardType: TextInputType.datetime,
 
                       validator: (value) {
@@ -412,6 +466,7 @@ class _PaginaTratamientoState extends State<PaginaTratamiento> {
                           return null;
                         }
                       },
+
 
                       onSaved: (value){
                         if(value != null)

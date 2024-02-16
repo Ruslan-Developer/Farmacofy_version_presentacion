@@ -5,6 +5,7 @@ import 'package:farmacofy/models/medicamentoOld.dart';
 import 'package:farmacofy/pages/page_listado_medicamentos.dart';
 import 'package:farmacofy/pages/page_listado_local_api.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class PaginaMedicamento extends StatefulWidget {
   const PaginaMedicamento({super.key});
@@ -17,6 +18,21 @@ class _PaginaMedicamentoState extends State<PaginaMedicamento> {
   final _formKey = GlobalKey<FormState>();
   Medicamento medicamento = Medicamento();
   BaseDeDatos bdHelper = BaseDeDatos();
+
+  final _dateController = TextEditingController();
+
+
+   Future<void> _selectDate(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2015, 8),
+      lastDate: DateTime(2101),
+    );
+    if (picked != null)
+      _dateController.text = DateFormat('dd/MM/yyyy').format(picked);
+  }
+
 
   String? _opcionSeleccionada;
 
@@ -133,6 +149,7 @@ class _PaginaMedicamentoState extends State<PaginaMedicamento> {
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: 20),
                   child: TextFormField(
+                    controller: _dateController,
                     keyboardType: TextInputType.datetime,
                     decoration: const InputDecoration(
                       labelText: 'Fecha de caducidad',
@@ -140,6 +157,10 @@ class _PaginaMedicamentoState extends State<PaginaMedicamento> {
                           'Introduce la fecha de caducidad del medicamento',
                       icon: Icon(Icons.calendar_today_rounded),
                     ),
+                     onTap: () {
+                      _selectDate(context);
+                    },
+
                     //Validación del campo
                     validator: (value) {
                       if (value == null || value.isEmpty) {

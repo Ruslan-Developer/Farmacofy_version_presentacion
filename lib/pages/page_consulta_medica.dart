@@ -10,6 +10,7 @@ import 'package:farmacofy/pages/page_listado_usuarios.dart';
 import 'package:farmacofy/pages/page_tratamiento.dart';
 import 'package:farmacofy/pages/page_listado_local_api.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 class PaginaConsultaMedica extends StatefulWidget {
@@ -20,6 +21,33 @@ class PaginaConsultaMedica extends StatefulWidget {
 }
 
 class _PaginaConsultaMedicaState extends State<PaginaConsultaMedica> {
+
+  final _dateController = TextEditingController();
+  final _timeController = TextEditingController();
+
+  Future<void> _selectDate(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2015, 8),
+      lastDate: DateTime(2101),
+    );
+    if (picked != null)
+      _dateController.text = DateFormat('dd/MM/yyyy').format(picked);
+  }
+
+  Future<void> _selectTime(BuildContext context) async {
+  final TimeOfDay? picked = await showTimePicker(
+    context: context,
+    initialTime: TimeOfDay.now(),
+  );
+  if (picked != null) {
+    final now = DateTime.now();
+    final dt = DateTime(now.year, now.month, now.day, picked.hour, picked.minute);
+    final format = DateFormat('HH:mm');  // 24 hour format
+    _timeController.text = format.format(dt);
+  }
+}
 
   final _formKey = GlobalKey<FormState>(); // Llave para validar el formulario
   //final TextEditingController _check = TextEditingController();
@@ -126,6 +154,7 @@ class _PaginaConsultaMedicaState extends State<PaginaConsultaMedica> {
                 const SizedBox(height: 20),
 
                 TextFormField(
+                   
                   //controller: _check,
                   keyboardType: TextInputType.text,
                   decoration: InputDecoration(
@@ -173,6 +202,7 @@ class _PaginaConsultaMedicaState extends State<PaginaConsultaMedica> {
                 const SizedBox(height: 20),
 
                 TextFormField(
+                  controller: _dateController,
                   //controller: _check,
                   keyboardType: TextInputType.text,
                   decoration: InputDecoration(
@@ -200,6 +230,10 @@ class _PaginaConsultaMedicaState extends State<PaginaConsultaMedica> {
                     borderSide: BorderSide(color: Colors.green, width: 2.0),
                     ),
                   ),
+                  
+                  onTap: () {
+                      _selectDate(context);
+                    },
 
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -225,6 +259,7 @@ class _PaginaConsultaMedicaState extends State<PaginaConsultaMedica> {
                 const SizedBox(height: 20),
 
                 TextFormField(
+                  controller: _timeController,
                   //controller: _check,
                   keyboardType: TextInputType.text,
                   decoration: InputDecoration(
@@ -252,6 +287,10 @@ class _PaginaConsultaMedicaState extends State<PaginaConsultaMedica> {
                     borderSide: BorderSide(color: Colors.green, width: 2.0),
                     ),
                   ),
+
+                   onTap: () {
+                              _selectTime(context);
+                            },
 
                   validator: (value) {
                     if (value==null || value.isEmpty){
