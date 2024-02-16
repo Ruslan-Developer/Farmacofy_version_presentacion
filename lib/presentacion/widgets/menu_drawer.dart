@@ -9,7 +9,7 @@ import 'package:farmacofy/pages/page_listado_medicamentos.dart';
 import 'package:farmacofy/pages/page_listado_tratamientos.dart';
 import 'package:farmacofy/pages/page_listado_usuarios.dart';
 import 'package:farmacofy/pages/page_tratamiento.dart';
-import 'package:farmacofy/pantallaInicial.dart';
+import 'package:farmacofy/pages/page_listado_local_api.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -68,7 +68,7 @@ class _MenuDrawerState extends State<MenuDrawer> {
           case 4:
             Navigator.pushReplacement(
               context,
-              MaterialPageRoute(builder: (context) => const InicioPantalla()),
+              MaterialPageRoute(builder: (context) => const ListadoLocalApi()),
             );
             break;
           case 5:
@@ -77,6 +77,7 @@ class _MenuDrawerState extends State<MenuDrawer> {
               MaterialPageRoute(builder: (context) => const InicioPantalla()),
             );
             break;
+         
           case 6:
             Navigator.push(
               context,
@@ -127,24 +128,28 @@ class _MenuDrawerState extends State<MenuDrawer> {
         ),
 
         const NavigationDrawerDestination(
-            icon: Icon(Icons.home), label: Text('Inicio')),
+            icon: Icon(Icons.home, color: Colors.blueAccent,), label: Text('Inicio')),
             // Hacemos desaparecer el boton de inicio si el usuario es admin
             //(!esAdmin.esAdmin)? 
         const NavigationDrawerDestination(
-            icon: Icon(Icons.medication_outlined), label: Text('Medicamentos')),
+            icon: Icon(Icons.medication_outlined, color: Colors.orangeAccent,), label: Text('Medicamentos')),
             //: SizedBox.shrink(), // Si es admin, no se muestra el boton
             
         const NavigationDrawerDestination(
-            icon: Icon(Icons.medication_liquid_outlined),
+            icon: Icon(Icons.medication_liquid_outlined, color: Colors.greenAccent,),
             label: Text('Tratamiento')),
             //: SizedBox.shrink(),
            
         const NavigationDrawerDestination(
-            icon: Icon(Icons.medical_services_outlined),
+            icon: Icon(Icons.medical_services_outlined, color: Colors.redAccent,),
             label: Text('Consultas médicas')),
+
+        const NavigationDrawerDestination(
+            icon: Icon(Icons.medical_services_outlined, color: Colors.redAccent,),
+            label: Text('Consultas médicas Local - API')), 
         
         const NavigationDrawerDestination(
-            icon: Icon(Icons.assignment_return_outlined),
+            icon: Icon(Icons.assignment_return_outlined, color: Colors.purpleAccent,),
             label: Text('Cerrar sesion')),
         const Padding(
           padding: EdgeInsets.fromLTRB(28, 10, 28, 20),
@@ -169,13 +174,12 @@ class _MenuDrawerState extends State<MenuDrawer> {
             thickness: 2,
           ),
         ),
-        const NavigationDrawerDestination(
-            icon: Icon(Icons.info_sharp), label: Text('Gestionar Perfil')),
+        
         NavigationDrawerDestination(
-            icon: Icon(Icons.settings), label: Text('Configuración')),
+            icon: Icon(Icons.settings, color: Color.fromARGB(255, 104, 103, 103),), label: Text('Configuración')),
         (esAdmin.esAdmin)
             ? NavigationDrawerDestination(
-                icon: Icon(Icons.admin_panel_settings),
+                icon: Icon(Icons.admin_panel_settings, color: Colors.green,),
                 label: Text('Gestion de usuarios'))
             : Text("")
       ],

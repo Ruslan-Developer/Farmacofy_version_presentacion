@@ -3,7 +3,7 @@ import 'package:farmacofy/BBDD/bbdd_medicamento_old.dart';
 import 'package:farmacofy/models/medicamento.dart';
 import 'package:farmacofy/models/medicamentoOld.dart';
 import 'package:farmacofy/pages/page_listado_medicamentos.dart';
-import 'package:farmacofy/pantallaInicial.dart';
+import 'package:farmacofy/pages/page_listado_local_api.dart';
 import 'package:flutter/material.dart';
 
 class PaginaMedicamento extends StatefulWidget {

@@ -5,7 +5,7 @@ import 'package:farmacofy/pages/page_editar_usuario.dart';
 import 'package:farmacofy/pages/page_listado_tratamientos.dart';
 import 'package:farmacofy/pages/page_nuevo_usuario.dart';
 import 'package:farmacofy/pages/page_tratamiento.dart';
-import 'package:farmacofy/pantallaInicial.dart';
+import 'package:farmacofy/pages/page_listado_local_api.dart';
 import 'package:farmacofy/presentacion/widgets/menu_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';

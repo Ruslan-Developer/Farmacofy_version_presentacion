@@ -113,7 +113,7 @@ class ConsultaMedica {
 
     if(modoLocal) {
       // Obtener las consultas de la base de datos local
-      BaseDeDatos bd = BaseDeDatos();
+      BaseDeDatos bd = new BaseDeDatos();
       List<Map<String, dynamic>> consultas = await BaseDeDatos.consultarBD('Consulta');
       for(int i = 0; i < consultas.length; i++) {
         proximasConsultas.add(ConsultaMedica.fromMapObject(consultas[i]));

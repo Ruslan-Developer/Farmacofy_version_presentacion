@@ -1,4 +1,4 @@
-import 'package:farmacofy/pantallaInicial.dart';
+import 'package:farmacofy/pages/page_listado_local_api.dart';
 import 'package:farmacofy/anadirTratamiento/tratamientos3.dart';
 import 'package:flutter/material.dart';
 
@@ -58,7 +58,7 @@ class Tratamientos4 extends StatelessWidget {
                 // Lógica cuando se presiona el botón "Finalizar"
                 Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const PantallaInicial()),
+                MaterialPageRoute(builder: (context) => const ListadoLocalApi()),
               );
               },
               style: ElevatedButton.styleFrom(

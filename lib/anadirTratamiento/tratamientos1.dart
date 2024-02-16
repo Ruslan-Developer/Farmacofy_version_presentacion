@@ -1,5 +1,5 @@
 import 'package:farmacofy/config_menu/menu_items.dart';
-import 'package:farmacofy/pantallaInicial.dart';
+import 'package:farmacofy/pages/page_listado_local_api.dart';
 import 'package:farmacofy/anadirTratamiento/tratamientos2.dart';
 import 'package:flutter/material.dart';
 
@@ -18,7 +18,7 @@ class Tratamientos1 extends StatelessWidget {
           onPressed: () {
             Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const PantallaInicial()),
+                MaterialPageRoute(builder: (context) => const ListadoLocalApi()),
               );
           },
         ),

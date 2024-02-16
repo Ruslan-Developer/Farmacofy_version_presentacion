@@ -293,15 +293,15 @@ class _ListadoMedicamentosState extends State<ListadoMedicamentos> {
       bottomNavigationBar: BottomNavigationBar(
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+            icon: Icon(Icons.home,),
             label: 'Inicio',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.medication_liquid),
+            icon: Icon(Icons.medication_liquid, color: Colors.red,),
             label: '+ Medicamento',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.local_pharmacy_rounded),
+            icon: Icon(Icons.local_pharmacy_rounded, color: Colors.green,),
             label: 'Farmacias',
           ),
         ],

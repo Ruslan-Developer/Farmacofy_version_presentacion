@@ -3,7 +3,7 @@ import 'package:farmacofy/config_menu/menu_items.dart';
 import 'package:farmacofy/anadirTratamiento/tratamientos2.dart';
 import 'package:farmacofy/instruccionesUsuario.dart';
 import 'package:farmacofy/pages/page_listado_tratamientos.dart';
-import 'package:farmacofy/pantallaInicial.dart';
+import 'package:farmacofy/pages/page_listado_local_api.dart';
 import 'package:farmacofy/presentacion/widgets/menu_drawer.dart';
 import 'package:flutter/material.dart';
 
@@ -81,7 +81,7 @@ class Almacen extends StatelessWidget {
             case 0:
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: (context) => const PantallaInicial()),
+                MaterialPageRoute(builder: (context) => const ListadoLocalApi()),
               );
               break;
             case 1:

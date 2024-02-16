@@ -14,8 +14,8 @@ import 'package:farmacofy/presentacion/widgets/menu_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class PantallaInicial extends StatelessWidget {
-  const PantallaInicial({Key? key}) : super(key: key);
+class ListadoLocalApi extends StatelessWidget {
+  const ListadoLocalApi({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
