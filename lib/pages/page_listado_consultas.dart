@@ -212,11 +212,11 @@ class _ListadoConsultasMedicasState extends State<ListadoConsultasMedicas> {
             label: 'Inicio',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.medication_liquid),
+            icon: Icon(Icons.medication_liquid, color: Colors.red),
             label: '+ Medicamento',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.local_pharmacy_rounded),
+            icon: Icon(Icons.local_pharmacy_rounded, color: Colors.green),
             label: 'Farmacias',
           ),
         ],

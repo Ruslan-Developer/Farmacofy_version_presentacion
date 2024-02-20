@@ -56,16 +56,7 @@ class _ListadoTratamientosState extends State<ListadoTratamientos> {
 
         await BaseDeDatos.actualizarCantidadTotalPastillas(
             idTratamiento!, pastillasTratamiento);
-
-        if (pastillasTratamiento <= pastillasTratamientoAlarma!) {
-          int? idMedicamento =
-              await BaseDeDatos.obtenerIdMedicamento(idTratamiento!);
-          
-          nombreMedicamento=await BaseDeDatos.obtenerNombreMedicamento(idMedicamento!);
-
-          mostrarNotification('Recordatorio',
-              'Debe reponer pastillas de: ${nombreMedicamento}');
-        }
+       
       }
     }
 
@@ -89,7 +80,7 @@ class _ListadoTratamientosState extends State<ListadoTratamientos> {
         '${time.hour.toString().padLeft(2, '0')}:${time.minute.toString().padLeft(2, '0')}';
 
     try {
-      idTratamiento = context.read<TratamientoAlarma>().idTratamiento!;
+      idTratamiento = context.read<TratamientoAlarma>().idTratamiento;
       fechaInicio = context.read<TratamientoAlarma>().fechaInitStr!;
       horaInicio = context.read<TratamientoAlarma>().horaInitStr!;
       dosis=context.read<TratamientoAlarma>().dosis!;
@@ -512,11 +503,11 @@ class _ListadoTratamientosState extends State<ListadoTratamientos> {
             label: 'Inicio',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.medication_liquid),
+            icon: Icon(Icons.medication_liquid, color: Colors.red,),
             label: '+ Medicamento',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.local_pharmacy_rounded),
+            icon: Icon(Icons.local_pharmacy_rounded, color: Colors.green,),
             label: 'Farmacias',
           ),
         ],
